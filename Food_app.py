@@ -11,7 +11,7 @@ import streamlit as st
 def get_chatbot_response(user_input):
     if "hello" in user_input.lower() or "hi" in user_input.lower():
         return "Hello! Welcome to our restaurant. How can I help you today?"
-    elif "menu" in user_input.lower():
+    elif "menu" in user_input.lower() or "I'll like to make an order" in user_input.lower() or "I'll want place an order" in user_input.lower() or "what's on the menu" in user_input.lower():
         return "Our menu includes spicy jollof, fried rice, assorted meat stew, pasta, salads, and milkshake. Would you like to place an order?"
     elif "yes" in user_input.lower():
         return "Sure! What would you like to order?"
@@ -38,7 +38,7 @@ for chat in st.session_state.conversation:
     if chat['role'] == 'user':
         st.write(f"**You:** {chat['message']}")
     else:
-        st.write(f"**Bot:** {chat['message']}")
+        st.write(f"**Dami:** {chat['message']}")
 
 # Input field for the user's message
 user_input = st.text_input("You:", key="user_input")
@@ -50,7 +50,7 @@ if st.button("Send"):
 
         # Generate and append the chatbot's response to the conversation
         bot_response = get_chatbot_response(user_input)
-        st.session_state.conversation.append({'role': 'bot', 'message': bot_response})
+        st.session_state.conversation.append({'role': 'Dami', 'message': bot_response})
 
         # Clear the input field by resetting the key
         st.experimental_rerun()
